@@ -17,4 +17,10 @@ class Appointments extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // Una cita pertenece a un único servicio
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Services::class);
+    }
 }

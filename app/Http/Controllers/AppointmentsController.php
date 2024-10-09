@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointments;
+use App\Models\Services;
 use Illuminate\Http\Request;
 
 class AppointmentsController extends Controller
 {
     public function index()
     {
+        // Mando al formulario los datos almacenados de servicio (corte de pelo) y para mostrar los datos justo debajo mando las citas
         $citas = Appointments::all();
-        return view('admin.appointments.index', ['citas' =>$citas]);
+        $services = Services::all();
+        return view('user.appointments.index', ['citas' => $citas, 'services' => $services]);
     }
     // Almaceno las citas
     public function store(Request $request)
