@@ -10,7 +10,7 @@ class Appointments extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'appointment_date', 'start_time', 'end_time', 'status'];
+    protected $fillable = ['user_id', 'appointment_date', 'start_time', 'end_time', 'status', 'service_id'];
 
     // Cada cita pertenece a un único usuario y un usuario puede tener muchas citas
     public function user(): BelongsTo

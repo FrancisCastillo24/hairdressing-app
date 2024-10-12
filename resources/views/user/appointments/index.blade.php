@@ -10,17 +10,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form class="row g-3">
+                    <form class="row g-3" action="{{ route('citas.store') }}" method="POST">
+                        @csrf
                         <div class="col-md-6">
                             <label for="inputDate" class="form-label">Fecha Cita</label>
                             <input type="date" class="form-control" name="appointment_date" id="appointment_date">
                         </div>
                         <div class="col-md-4">
-                            <label for="inputState" class="form-label">Tipo de corte</label>
-                            <select id="inputState" class="form-select">
-                                <option selected>Elegir...</option>
-                                @foreach ($services as $service)
-                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                            <label for="service_id">Selecciona un servicio:</label>
+                            <select name="service_id" id="service_id" required>
+                                <option value="0" selected>Seleccionar...</option>
+                                @foreach($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -30,7 +31,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="inputEndTime" class="form-label">Hora Fin</label>
-                            <input type="time" class="form-control" name="end_time" id="end_time" disabled>
+                            <input type="time" class="form-control" name="end_time" id="end_time">
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">Programar Cita</button>
