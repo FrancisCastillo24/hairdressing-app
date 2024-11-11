@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('appointments', function (Blueprint $table) {
-            // Definir la clave foránea solo si no existe
+            // Agregar la columna service_id si no existe
             if (!Schema::hasColumn('appointments', 'service_id')) {
                 $table->unsignedBigInteger('service_id')->after('end_time'); // Asegúrate de colocar el nuevo campo en la posición correcta
             }
 
-            // Define la clave foránea
+            // Definir la clave foránea
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
